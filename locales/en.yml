@@ -1,0 +1,4 @@
+en:
+  theme_metadata:
+    description: "Add a short share link checkbox in the share modal"
+  short_link_label: "Short link"
