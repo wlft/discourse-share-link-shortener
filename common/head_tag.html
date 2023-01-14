@@ -37,6 +37,28 @@
     </DModalBody>
 </script>
 
-<script type="text/javascript">
-    // to detect the checkbox changes and update the text input accordingly
+<script type="text/discourse-plugin" version="1.4.0">
+    api.modifyClass("component:d-modal-body", {
+      pluginId: "shortShareLinks",
+      didInsertElement: function() {
+        this._super();
+        const inviteShortLinkCheckbox = document.getElementById("invite-short-link");
+        if (inviteShortLinkCheckbox != null) {
+          const shareURLInput = document.querySelectorAll('input[name="invite-link"]')[0];
+          const shareURL = shareURLInput.value;
+          // Remove the username from the URL
+          let shortShareURL = shareURL.split("?u=")[0];
+          // Return the URL without the topic name
+          let shortShareURLParts = shortShareURL.match(/(.+?\/)t\/[^\/]+?\/(.+)/);
+          shortShareURL = shortShareURLParts[1]+shortShareURLParts[2];
+          inviteShortLinkCheckbox.addEventListener("change", (event) => {
+            if (event.currentTarget.checked) {
+              shareURLInput.value = shortShareURL;
+            } else {
+              shareURLInput.value = shareURL;
+            }
+          });
+        }
+      }
+    });
 </script>
