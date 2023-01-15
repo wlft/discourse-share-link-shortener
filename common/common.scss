@@ -4,4 +4,6 @@ label[for="invite-link"] {
 label[for="invite-short-link"] {
     float: right;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
