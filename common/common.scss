@@ -6,4 +6,7 @@ label[for="invite-short-link"] {
     cursor: pointer;
     display: flex;
     align-items: center;
+    input {
+        margin-top: 0;
+    }
 }
