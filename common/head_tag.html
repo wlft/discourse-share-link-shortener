@@ -1,64 +1,34 @@
-<script type="text/x-handlebars" data-template-name="modal/share-topic">
-    <DModalBody @rawTitle={{if this.post (i18n "post.share.title" post_number=this.post.post_number) (i18n "topic.share.title")}} @rawSubtitle={{if this.post this.displayDate}}>
-      <form>
-        <div class="input-group invite-link">
-          <div class="invite-link-labels">
-            <label for="invite-link">
-              {{if this.post (i18n "post.share.instructions" post_number=this.post.post_number) (i18n "topic.share.instructions")}}
-            </label>
-            <label for="invite-short-link"><input id="invite-short-link" name="invite-short-link" class="invite-short-link" type="checkbox" />{{theme-i18n "short_link_label"}}</label>
-          </div>
-          <div class="link-share-container">
-            <Input name="invite-link" class="invite-link" @value={{this.url}} readonly={{true}} />
-            <CopyButton @selector="input.invite-link" />
-          </div>
-        </div>
-    
-        <div class="link-share-actions">
-          <div class="sources">
-            {{#each this.sources as |s|}}
-              <ShareSource @source={{s}} @title={{this.topic.title}} @action={{action "share"}} />
-            {{/each}}
-    
-            {{#if this.allowInvites}}
-              <DButton @class="btn-default invite" @label="topic.share.invite_users" @icon="user-plus" @action={{action "inviteUsers"}} />
-            {{/if}}
-    
-            {{#if this.topic.details.can_reply_as_new_topic}}
-              {{#if this.topic.isPrivateMessage}}
-                <DButton @action={{action "replyAsNewTopic"}} @class="btn-default new-topic" @icon="plus" @aria-label="post.reply_as_new_private_message" @title="post.reply_as_new_private_message" @label="user.new_private_message" />
-              {{else}}
-                <DButton @action={{action "replyAsNewTopic"}} @class="btn-default new-topic" @icon="plus" @aria-label="post.reply_as_new_topic" @title="post.reply_as_new_topic" @label="topic.create" />
-              {{/if}}
-            {{/if}}
-          </div>
-        </div>
-      </form>
-    </DModalBody>
-</script>
-
 <script type="text/discourse-plugin" version="1.4.0">
-    api.modifyClass("component:d-modal-body", {
-      pluginId: "shortShareLinks",
-      didInsertElement: function() {
-        this._super();
+  api.modifyClass("component:d-modal-body", {
+    pluginId: "shortShareLinks",
+    didInsertElement: function() {
+      this._super();
+      // check if we're on a link sharing modal
+      const shareLinkLabel = document.querySelector('label[for="invite-link"]');
+      if (shareLinkLabel != null) {
+
+        // insert the shortener checkbox
+        shareLinkLabel.insertAdjacentHTML('afterend', '<label for="invite-short-link"><input id="invite-short-link" name="invite-short-link" class="invite-short-link" type="checkbox" />'+I18n.t(themePrefix("short_link_label"))+'</label>');
         const inviteShortLinkCheckbox = document.getElementById("invite-short-link");
-        if (inviteShortLinkCheckbox != null) {
-          const shareURLInput = document.querySelector('input[name="invite-link"]');
-          const shareURL = shareURLInput.value;
-          // Remove the username from the URL
-          let shortShareURL = shareURL.split("?u=")[0];
-          // Return the URL without the topic name
-          let shortShareURLParts = shortShareURL.match(/(.+?\/)t\/[^\/]+?\/(.+)/);
-          shortShareURL = shortShareURLParts[1]+shortShareURLParts[2];
-          inviteShortLinkCheckbox.addEventListener("change", (event) => {
-            if (event.currentTarget.checked) {
-              shareURLInput.value = shortShareURL;
-            } else {
-              shareURLInput.value = shareURL;
-            }
-          });
-        }
+
+        const shareURLInput = document.querySelector('input[name="invite-link"]');
+        const shareURL = shareURLInput.value;
+
+        // Remove the username from the URL
+        let shortShareURL = shareURL.split("?u=")[0];
+
+        // Return the URL without the topic name
+        let shortShareURLParts = shortShareURL.match(/(.+?\/)t\/[^\/]+?\/(.+)/);
+        shortShareURL = shortShareURLParts[1]+shortShareURLParts[2];
+
+        inviteShortLinkCheckbox.addEventListener("change", (event) => {
+          if (event.currentTarget.checked) {
+            shareURLInput.value = shortShareURL;
+          } else {
+            shareURLInput.value = shareURL;
+          }
+        });
       }
-    });
+    }
+  });
 </script>

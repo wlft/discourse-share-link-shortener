@@ -1,6 +1,7 @@
-.invite-link-labels {
-    display: flex;
+label[for="invite-link"] {
+    display: inline-flex;
 }
 label[for="invite-short-link"] {
-    margin-left: auto;
+    float: right;
+    cursor: pointer;
 }
