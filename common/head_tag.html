@@ -18,7 +18,7 @@
         let shortShareURL = shareURL.split("?u=")[0];
 
         // Return the URL without the topic name
-        let shortShareURLParts = shortShareURL.match(/(.+?\/)t\/[^\/]+?\/(.+)/);
+        let shortShareURLParts = shortShareURL.match(/(.+?\/t\/)[^\/]+?\/(.+)/);
         shortShareURL = shortShareURLParts[1]+shortShareURLParts[2];
 
         inviteShortLinkCheckbox.addEventListener("change", (event) => {
