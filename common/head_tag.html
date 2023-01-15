@@ -3,6 +3,7 @@
     pluginId: "shortShareLinks",
     didInsertElement: function() {
       this._super();
+      
       // check if we're on a link sharing modal
       const shareLinkLabel = document.querySelector('label[for="invite-link"]');
       if (shareLinkLabel != null) {
