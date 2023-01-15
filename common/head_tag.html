@@ -44,7 +44,7 @@
         this._super();
         const inviteShortLinkCheckbox = document.getElementById("invite-short-link");
         if (inviteShortLinkCheckbox != null) {
-          const shareURLInput = document.querySelectorAll('input[name="invite-link"]')[0];
+          const shareURLInput = document.querySelector('input[name="invite-link"]');
           const shareURL = shareURLInput.value;
           // Remove the username from the URL
           let shortShareURL = shareURL.split("?u=")[0];
