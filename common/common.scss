@@ -8,16 +8,20 @@
   }
   .btn {
     margin: 0;
-    min-width: 0;
-    .d-button-label {
-      min-width: 0;
-      @include ellipsis;
+    &:last-of-type {
+      margin-right: auto;
     }
   }
 
-  .btn-link-length {
-    .desktop-view & {
-      margin-left: auto;
+  .d-toggle-switch--label {
+    margin: 0;
+  }
+
+  .d-toggle-switch__checkbox-slider {
+    // visual alignment tweak
+    margin-top: -0.067em;
+    svg {
+      margin-top: -0.067em;
     }
   }
 }

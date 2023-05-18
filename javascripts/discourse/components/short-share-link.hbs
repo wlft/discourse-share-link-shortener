@@ -1,10 +1,9 @@
-<DButton
-  @class="btn-default btn-link-length"
-  @icon="link"
-  @action={{if this.isShortened (action "lengthenLink") (action "shortenLink")}}
-  @translatedLabel={{if
-    this.isShortened
-    (theme-i18n "longer")
-    (theme-i18n "shorter")
+<DToggleSwitch
+  class="btn-link-length"
+  @state={{this.isShortened}}
+  @translatedLabel={{theme-i18n "shorter"}}
+  {{on
+    "click"
+    (if this.isShortened (action "lengthenLink") (action "shortenLink"))
   }}
 />
