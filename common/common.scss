@@ -1,12 +1,27 @@
-label[for="invite-link"] {
-    display: inline-flex;
-}
-label[for="invite-short-link"] {
-    float: right;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    input {
-        margin-top: 0;
+.link-share-actions .sources {
+  flex-wrap: wrap;
+  margin-top: 0.5em;
+  gap: 0.5em;
+  width: 100%;
+  .mobile-view & {
+    font-size: var(--font-down-1); // need a little more space
+  }
+  .btn {
+    margin: 0;
+    &:last-of-type {
+      margin-right: auto;
     }
+  }
+
+  .d-toggle-switch--label {
+    margin: 0;
+  }
+
+  .d-toggle-switch__checkbox-slider {
+    // visual alignment tweak
+    margin-top: -0.067em;
+    svg {
+      margin-top: -0.067em;
+    }
+  }
 }
