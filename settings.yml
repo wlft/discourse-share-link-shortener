@@ -1,0 +1,4 @@
+remember_preference:
+  default: true
+  description: Remember if the user prefers shorter links using their browser's local storage.
+  type: bool
