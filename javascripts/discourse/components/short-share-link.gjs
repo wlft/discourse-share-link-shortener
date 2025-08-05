@@ -29,6 +29,10 @@ export default class ShortShareLink extends Component {
   }
 
   get absoluteDomain() {
+    if (settings.shorter_domain != '') {
+      return ((settings.shorter_domain.startsWith('https://') || settings.shorter_domain.startsWith('http://')) ? '' : 'https://') + settings.shorter_domain + (settings.shorter_domain.endsWith('/') ? '' : '/')
+    };
+
     return getAbsoluteURL("/");
   }
 

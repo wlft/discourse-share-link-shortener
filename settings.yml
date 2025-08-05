@@ -2,3 +2,8 @@ remember_preference:
   default: true
   description: Remember if the user prefers shorter links using their browser's local storage.
   type: bool
+
+shorter_domain:
+  default: ''
+  description: Replace the default base URL of your forum with a custom short link. (e.g., example.com). Do not include a protocol or path. Leave blank to keep the default URL.
+  type: string
