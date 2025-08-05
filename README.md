@@ -1,4 +1,4 @@
-Adds a link shortener checkbox in Discourse's share link modal.
+Add a share link shortener checkbox in the share modal. Fork adds support for an alternative domain. [Forked from discourse/discourse-share-link-shortener on GitHub.](https://github.com/discourse/discourse-share-link-shortener)
 
 ![short link checkbox inactive](https://user-images.githubusercontent.com/5654300/212539381-ddaa2732-16a4-4f90-8a09-7dcb3f59427a.png)
 
